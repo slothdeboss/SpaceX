@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/historyFragment"
+        android:icon="@drawable/ic_history_menu_tab"
+        android:title="@string/menu_history_tab" />
+    <item
+        android:id="@+id/launchesFragment"
+        android:icon="@drawable/ic_launches_menu_tab"
+        android:title="@string/menu_launches_tab" />
+    <item
+        android:id="@+id/missionsFragment"
+        android:icon="@drawable/ic_missions_menu_tab"
+        android:title="@string/menu_missions_tab" />
+</menu>

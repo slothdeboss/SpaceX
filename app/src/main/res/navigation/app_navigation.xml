@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/historyFragment">
+
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.slothdeboss.spacex.ui.history.HistoryFragment"
+        android:label="History"
+        tools:layout="@layout/history_fragment" />
+    <fragment
+        android:id="@+id/launchesFragment"
+        android:name="com.slothdeboss.spacex.ui.launches.LaunchesFragment"
+        android:label="Launches"
+        tools:layout="@layout/launches_fragment" />
+    <fragment
+        android:id="@+id/missionsFragment"
+        android:name="com.slothdeboss.spacex.ui.missions.MissionsFragment"
+        android:label="Missions"
+        tools:layout="@layout/missions_fragment" />
+</navigation>

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">SpaceX</string>
+    <string name="menu_history_tab">History</string>
+    <string name="menu_launches_tab">Launches</string>
+    <string name="menu_missions_tab">Missions</string>
+    <string name="button_reload">Reload</string>
+    <string name="app_database">SpaceX.db</string>
+</resources>
