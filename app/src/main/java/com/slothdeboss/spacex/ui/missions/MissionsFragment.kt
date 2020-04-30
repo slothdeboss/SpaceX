@@ -11,10 +11,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MissionsFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = MissionsFragment()
-    }
-
     private val viewModel: MissionsViewModel by viewModel()
 
     override fun onCreateView(

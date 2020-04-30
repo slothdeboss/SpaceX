@@ -1,14 +1,18 @@
 package com.slothdeboss.spacex.ui.history.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.slothdeboss.spacex.R
 import com.slothdeboss.spacex.data.model.History
+import com.slothdeboss.spacex.ui.OnCardClicked
 import kotlinx.android.synthetic.main.card_history.view.*
 
-class HistoryAdapter: RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
+class HistoryAdapter(
+    private val listener: OnCardClicked
+): RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
     private val historyList = mutableListOf<History>()
 
@@ -22,7 +26,7 @@ class HistoryAdapter: RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
     override fun onBindViewHolder(holder: HistoryViewHolder, position: Int) {
         val item = historyList[position]
-        holder.bind(history = item)
+        holder.bind(history = item, listener = listener)
     }
 
     fun updateHistoryList(newHistory: List<History>) {
@@ -33,8 +37,11 @@ class HistoryAdapter: RecyclerView.Adapter<HistoryAdapter.HistoryViewHolder>() {
 
     inner class HistoryViewHolder(private val view: View): RecyclerView.ViewHolder(view) {
 
-        fun bind(history: History) {
+        fun bind(history: History, listener: OnCardClicked) {
             view.historyCardTitle.text = history.title
+            view.setOnClickListener {
+                listener.onClick(history.id)
+            }
         }
 
     }

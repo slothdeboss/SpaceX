@@ -11,10 +11,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class LaunchesFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = LaunchesFragment()
-    }
-
     private val viewModel: LaunchesViewModel by viewModel()
 
     override fun onCreateView(

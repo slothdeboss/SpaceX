@@ -7,37 +7,43 @@ import androidx.lifecycle.viewModelScope
 import com.slothdeboss.spacex.data.model.History
 import com.slothdeboss.spacex.data.repository.Repository
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.*
 
 class HistoryViewModel(
     private val repository: Repository<History>
 ) : ViewModel() {
 
-    private val _allHistory = MutableLiveData<List<History>>()
-    val allHistory: LiveData<List<History>>
-        get() = _allHistory
+    private val _historyState = MutableLiveData<HistoryState>()
+    val historyState: LiveData<HistoryState>
+        get() = _historyState
 
-    private val _history = MutableLiveData<History>()
-    val history: LiveData<History>
-        get() = _history
+    fun render(event: HistoryEvent) {
+        when (event) {
+            LoadAllHistory -> fetchHistory()
+            is LoadHistoryById -> fetchHistoryById(event.id)
+        }
+    }
 
-    fun fetchHistory() {
+    private fun fetchHistory() {
+        _historyState.value = Loading
         viewModelScope.launch {
             try {
-                _allHistory.value = repository.getAllData()
+                val history = repository.getAllData()
+                _historyState.value = OnListFetched(data = history)
             } catch (e: Exception) {
                 e.printStackTrace()
+                _historyState.value = OnError
             }
         }
     }
 
-    fun fetchHistoryById(id: Int) {
+    private fun fetchHistoryById(id: Int) {
         viewModelScope.launch {
             try {
-                _history.value = repository.getDataById(id = id)
+                val history = repository.getDataById(id = id)
+                _historyState.value = OnItemFetched(data = history)
             } catch (e: Exception) {
                 e.printStackTrace()
+                _historyState.value = OnError
             }
         }
     }
