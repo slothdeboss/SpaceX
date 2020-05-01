@@ -27,7 +27,7 @@ class HistoryViewModel(
         _historyState.value = Loading
         viewModelScope.launch {
             try {
-                val history = repository.getAllData()
+                val history = repository.obtainAllData()
                 _historyState.value = OnListFetched(data = history)
             } catch (e: Exception) {
                 e.printStackTrace()
@@ -39,7 +39,7 @@ class HistoryViewModel(
     private fun fetchHistoryById(id: Int) {
         viewModelScope.launch {
             try {
-                val history = repository.getDataById(id = id)
+                val history = repository.obtainDataById(id = id)
                 _historyState.value = OnItemFetched(data = history)
             } catch (e: Exception) {
                 e.printStackTrace()

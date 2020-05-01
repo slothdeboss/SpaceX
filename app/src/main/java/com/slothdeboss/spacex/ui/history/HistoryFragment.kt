@@ -83,4 +83,5 @@ class HistoryFragment : Fragment(), OnCardClicked {
             adapter = rvAdapter
         }
     }
+
 }

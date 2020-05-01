@@ -13,25 +13,34 @@ class HistoryRepository(
     private val dao: HistoryDao
 ) : Repository<History> {
 
-    override suspend fun getAllData(): List<History> {
-        val remoteHistory = withContext(Dispatchers.IO) {
-            remoteSource.getHistory()
+    override suspend fun obtainAllData(): List<History> {
+        val history = obtainAllLocalData()
+        return if (history.isEmpty()) {
+            val remoteHistory = obtainAllRemoteData()
+            remoteHistory
+        } else {
+            history
         }
-        insertHistoryToDatabase(history = remoteHistory)
-        return remoteHistory
     }
 
-    override suspend fun getDataById(id: Int): History {
-        return dao.retrieveHistoryById(id = id)
-    }
+    override suspend fun obtainDataById(id: Int): History = dao.retrieveHistoryById(id = id)
 
-    private suspend fun insertHistoryToDatabase(history: List<History>) {
+    override suspend fun obtainAllLocalData(): List<History> = dao.retrieveAllHistory()
+
+    override suspend fun insertAllDataToLocal(data: List<History>) {
         try {
-            withContext(Dispatchers.IO) {
-                dao.insertHistoryToDatabase(history = history)
-            }
+            dao.insertHistoryToDatabase(history = data)
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
+
+    override suspend fun obtainAllRemoteData(): List<History> {
+        val remoteHistory = withContext(Dispatchers.IO) {
+            remoteSource.getHistory()
+        }
+        insertAllDataToLocal(data = remoteHistory)
+        return remoteHistory
+    }
+
 }
