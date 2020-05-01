@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.slothdeboss.spacex.data.model.History
 import com.slothdeboss.spacex.data.repository.Repository
+import com.slothdeboss.spacex.ui.history.state.*
 import kotlinx.coroutines.launch
 
 class HistoryViewModel(

@@ -38,9 +38,17 @@ class HistoryRepository(
     override suspend fun obtainAllRemoteData(): List<History> {
         val remoteHistory = withContext(Dispatchers.IO) {
             remoteSource.getHistory()
+        }.map { history ->
+            history.eventDate = createDateString(history.eventDate)
+            history
+
         }
         insertAllDataToLocal(data = remoteHistory)
         return remoteHistory
     }
 
+    private fun createDateString(date: String) : String {
+        val eventDate = date.substring(0..9)
+        return "Date: $eventDate"
+    }
 }

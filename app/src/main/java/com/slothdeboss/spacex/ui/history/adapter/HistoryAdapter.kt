@@ -39,6 +39,7 @@ class HistoryAdapter(
 
         fun bind(history: History, listener: OnCardClicked) {
             view.historyCardTitle.text = history.title
+            view.historyCardEventDate.text = history.eventDate
             view.setOnClickListener {
                 listener.onClick(history.id)
             }

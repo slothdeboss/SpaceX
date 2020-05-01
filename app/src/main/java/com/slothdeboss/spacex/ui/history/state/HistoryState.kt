@@ -1,4 +1,4 @@
-package com.slothdeboss.spacex.ui.history
+package com.slothdeboss.spacex.ui.history.state
 
 import com.slothdeboss.spacex.data.model.History
 

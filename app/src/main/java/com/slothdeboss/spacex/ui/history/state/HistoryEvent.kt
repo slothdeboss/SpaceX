@@ -1,4 +1,4 @@
-package com.slothdeboss.spacex.ui.history
+package com.slothdeboss.spacex.ui.history.state
 
 sealed class HistoryEvent
 

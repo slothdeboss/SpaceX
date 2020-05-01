@@ -9,7 +9,11 @@
         android:id="@+id/historyFragment"
         android:name="com.slothdeboss.spacex.ui.history.HistoryFragment"
         android:label="History"
-        tools:layout="@layout/history_fragment" />
+        tools:layout="@layout/history_fragment" >
+        <action
+            android:id="@+id/toDetailScreen"
+            app:destination="@id/historyDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/launchesFragment"
         android:name="com.slothdeboss.spacex.ui.launches.LaunchesFragment"
@@ -20,4 +24,17 @@
         android:name="com.slothdeboss.spacex.ui.missions.MissionsFragment"
         android:label="Missions"
         tools:layout="@layout/missions_fragment" />
+    <fragment
+        android:id="@+id/historyDetailFragment"
+        android:name="com.slothdeboss.spacex.ui.history.HistoryDetailFragment"
+        android:label="Details"
+        tools:layout="@layout/fragment_history_detail" >
+        <action
+            android:id="@+id/toHistory"
+            app:destination="@id/historyFragment" />
+        <argument
+            android:name="historyId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
 </navigation>

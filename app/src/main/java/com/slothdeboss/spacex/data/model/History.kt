@@ -12,7 +12,7 @@ data class History(
     val title: String,
     @SerializedName(value = "event_date_utc")
     @ColumnInfo(name = "event_date")
-    var eventDate: String?,
+    var eventDate: String,
     @ColumnInfo(name = "flight_number")
     @SerializedName(value = "flight_number")
     val flightNumber: String?,

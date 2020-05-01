@@ -6,14 +6,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.snackbar.Snackbar
 
 import com.slothdeboss.spacex.R
 import com.slothdeboss.spacex.data.model.History
 import com.slothdeboss.spacex.ui.OnCardClicked
 import com.slothdeboss.spacex.ui.history.adapter.HistoryAdapter
+import com.slothdeboss.spacex.ui.history.state.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.card_history.*
 import kotlinx.android.synthetic.main.history_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -39,16 +43,17 @@ class HistoryFragment : Fragment(), OnCardClicked {
     }
 
     override fun onClick(itemId: Int) {
-        viewModel.render(LoadHistoryById(id = itemId))
+        Navigation.findNavController(historyCard).navigate(
+            HistoryFragmentDirections.toDetailScreen().setHistoryId(itemId)
+        )
     }
 
     private fun observeState() {
-        viewModel.historyState.observe(viewLifecycleOwner) {state ->
+        viewModel.historyState.observe(viewLifecycleOwner) { state ->
             when (state) {
                 Loading -> onLoadingState()
                 OnError -> onErrorState("Something went wrong!")
                 is OnListFetched -> onListFetched(data = state.data)
-                is OnItemFetched -> onItemFetched(data = state.data)
             }
         }
     }
@@ -59,9 +64,6 @@ class HistoryFragment : Fragment(), OnCardClicked {
         rvAdapter.updateHistoryList(newHistory = data)
     }
 
-    private fun onItemFetched(data: History) {
-        Log.i(TAG, data.title)
-    }
 
     private fun onLoadingState() {
         historyRecycler.visibility = View.GONE
