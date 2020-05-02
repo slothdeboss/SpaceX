@@ -8,8 +8,10 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 
 import com.slothdeboss.spacex.R
+import com.slothdeboss.spacex.data.event.LoadDataById
 import com.slothdeboss.spacex.data.model.History
-import com.slothdeboss.spacex.ui.history.state.*
+import com.slothdeboss.spacex.data.state.OnError
+import com.slothdeboss.spacex.data.state.OnItemFetched
 import kotlinx.android.synthetic.main.fragment_history_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -26,18 +28,18 @@ class HistoryDetailFragment : Fragment() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        arguments?.let {
-            val id = HistoryDetailFragmentArgs.fromBundle(it).historyId
-            viewModel.render(LoadHistoryById(id = id))
+        arguments?.let { bundle ->
+            val id = HistoryDetailFragmentArgs.fromBundle(bundle).historyId
+            viewModel.render(LoadDataById(id = id))
         }
         observeState()
     }
 
     private fun observeState() {
-        viewModel.historyState.observe(viewLifecycleOwner) {state ->
+        viewModel.dataState.observe(viewLifecycleOwner) { state ->
             when (state) {
                 OnError -> onErrorState()
-                is OnItemFetched -> onItemFetched(history = state.data)
+                is OnItemFetched<*> -> onItemFetched(history = state.data as History)
             }
         }
     }

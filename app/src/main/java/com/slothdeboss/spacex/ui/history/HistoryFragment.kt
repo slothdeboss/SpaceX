@@ -1,21 +1,22 @@
 package com.slothdeboss.spacex.ui.history
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.snackbar.Snackbar
 
 import com.slothdeboss.spacex.R
+import com.slothdeboss.spacex.data.event.LoadAllData
 import com.slothdeboss.spacex.data.model.History
+import com.slothdeboss.spacex.data.state.Loading
+import com.slothdeboss.spacex.data.state.OnError
+import com.slothdeboss.spacex.data.state.OnListFetched
 import com.slothdeboss.spacex.ui.OnCardClicked
 import com.slothdeboss.spacex.ui.history.adapter.HistoryAdapter
-import com.slothdeboss.spacex.ui.history.state.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.card_history.*
 import kotlinx.android.synthetic.main.history_fragment.*
@@ -38,7 +39,7 @@ class HistoryFragment : Fragment(), OnCardClicked {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         setupRecycler()
-        viewModel.render(LoadAllHistory)
+        viewModel.render(LoadAllData)
         observeState()
     }
 
@@ -49,11 +50,11 @@ class HistoryFragment : Fragment(), OnCardClicked {
     }
 
     private fun observeState() {
-        viewModel.historyState.observe(viewLifecycleOwner) { state ->
+        viewModel.dataState.observe(viewLifecycleOwner) { state ->
             when (state) {
                 Loading -> onLoadingState()
                 OnError -> onErrorState("Something went wrong!")
-                is OnListFetched -> onListFetched(data = state.data)
+                is OnListFetched<*> -> onListFetched(data = state.data as List<History>)
             }
         }
     }
@@ -74,7 +75,7 @@ class HistoryFragment : Fragment(), OnCardClicked {
         Snackbar.make(historyContent, message, Snackbar.LENGTH_LONG)
             .setAnchorView(appBottomNav)
             .setAction("Reload") {
-                viewModel.render(LoadAllHistory)
+                viewModel.render(LoadAllData)
             }
             .show()
     }

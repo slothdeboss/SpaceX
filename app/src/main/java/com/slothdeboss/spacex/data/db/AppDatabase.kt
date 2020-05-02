@@ -18,7 +18,7 @@ import com.slothdeboss.spacex.data.model.Rocket
     EnginesConverter::class,
     LandingLegsConverter::class
 )
-@Database(entities = [History::class, Rocket::class], version = 7, exportSchema = true)
+@Database(entities = [History::class, Rocket::class], version = 9, exportSchema = true)
 abstract class AppDatabase: RoomDatabase() {
 
     abstract fun getHistoryDao(): HistoryDao

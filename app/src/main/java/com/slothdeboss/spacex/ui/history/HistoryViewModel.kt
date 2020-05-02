@@ -4,22 +4,25 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.slothdeboss.spacex.data.event.DataEvent
+import com.slothdeboss.spacex.data.event.LoadAllData
+import com.slothdeboss.spacex.data.event.LoadDataById
 import com.slothdeboss.spacex.data.repository.HistoryRepository
-import com.slothdeboss.spacex.ui.history.state.*
+import com.slothdeboss.spacex.data.state.*
 import kotlinx.coroutines.launch
 
 class HistoryViewModel(
     private val repository: HistoryRepository
 ) : ViewModel() {
 
-    private val _historyState = MutableLiveData<HistoryState>()
-    val historyState: LiveData<HistoryState>
+    private val _historyState = MutableLiveData<DataState>()
+    val dataState: LiveData<DataState>
         get() = _historyState
 
-    fun render(event: HistoryEvent) {
+    fun render(event: DataEvent) {
         when (event) {
-            LoadAllHistory -> fetchHistory()
-            is LoadHistoryById -> fetchHistoryById(event.id)
+            LoadAllData -> fetchHistory()
+            is LoadDataById -> fetchHistoryById(event.id)
         }
     }
 
@@ -28,7 +31,8 @@ class HistoryViewModel(
         viewModelScope.launch {
             try {
                 val history = repository.obtainAllData()
-                _historyState.value = OnListFetched(data = history)
+                _historyState.value =
+                    OnListFetched(data = history)
             } catch (e: Exception) {
                 e.printStackTrace()
                 _historyState.value = OnError
@@ -40,7 +44,8 @@ class HistoryViewModel(
         viewModelScope.launch {
             try {
                 val history = repository.obtainDataById(id = id)
-                _historyState.value = OnItemFetched(data = history)
+                _historyState.value =
+                    OnItemFetched(data = history)
             } catch (e: Exception) {
                 e.printStackTrace()
                 _historyState.value = OnError

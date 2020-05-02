@@ -18,7 +18,7 @@ data class Rocket(
     @SerializedName(value = "success_rate_pct")
     @ColumnInfo(name = "success_rate_pct")
     val successRate: String,
-    val Country: String?,
+    val country: String?,
     val company: String,
     val height: Height,
     val diameter: Diameter,
@@ -33,7 +33,7 @@ data class Rocket(
     @SerializedName(value = "landing_legs")
     val legs: LandingLegs,
     val wikipedia: String,
-    val descriptions: String?,
+    val description: String?,
     @SerializedName(value = "rocket_id")
     val rocketId: String,
     @SerializedName(value = "rocket_name")

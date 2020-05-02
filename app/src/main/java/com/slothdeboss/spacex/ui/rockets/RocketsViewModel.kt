@@ -4,25 +4,50 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.slothdeboss.spacex.data.model.Rocket
+import com.slothdeboss.spacex.data.event.DataEvent
+import com.slothdeboss.spacex.data.event.LoadAllData
+import com.slothdeboss.spacex.data.event.LoadDataById
 import com.slothdeboss.spacex.data.repository.RocketsRepository
+import com.slothdeboss.spacex.data.state.*
 import kotlinx.coroutines.launch
-import java.lang.Exception
+import kotlin.Exception
 
 class RocketsViewModel(
     private val repository: RocketsRepository
 ) : ViewModel() {
 
-    private val _rockets = MutableLiveData<List<Rocket>>()
-    val rockets: LiveData<List<Rocket>>
-        get() = _rockets
+    private val _state = MutableLiveData<DataState>()
+    val state: LiveData<DataState>
+        get() = _state
 
-    fun fetchRockets() {
+    fun render(event: DataEvent) {
+        when (event) {
+            LoadAllData -> fetchRockets()
+            is LoadDataById -> fetchRocketById(id = event.id)
+        }
+    }
+
+    private fun fetchRocketById(id: Int) {
         viewModelScope.launch {
-            try {
-                _rockets.value = repository.obtainAllData()
+            try{
+                val data = repository.obtainDataById(id = id)
+                _state.value = OnItemFetched(data = data)
             } catch (e: Exception) {
                 e.printStackTrace()
+                _state.value = OnError
+            }
+        }
+    }
+
+    private fun fetchRockets() {
+        _state.value = Loading
+        viewModelScope.launch {
+            try {
+                val data = repository.obtainAllData()
+                _state.value = OnListFetched(data = data)
+            } catch (e: Exception) {
+                e.printStackTrace()
+                _state.value = OnError
             }
         }
     }
