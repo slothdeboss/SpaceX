@@ -15,10 +15,10 @@
             app:destination="@id/historyDetailFragment" />
     </fragment>
     <fragment
-        android:id="@+id/launchesFragment"
-        android:name="com.slothdeboss.spacex.ui.launches.LaunchesFragment"
-        android:label="Launches"
-        tools:layout="@layout/launches_fragment" />
+        android:id="@+id/rocketsFragment"
+        android:name="com.slothdeboss.spacex.ui.rockets.RocketsFragment"
+        android:label="Rockets"
+        tools:layout="@layout/rockets_fragment" />
     <fragment
         android:id="@+id/missionsFragment"
         android:name="com.slothdeboss.spacex.ui.missions.MissionsFragment"

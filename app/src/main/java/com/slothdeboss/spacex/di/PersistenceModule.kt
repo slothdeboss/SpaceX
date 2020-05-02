@@ -23,4 +23,7 @@ val persistenceModule = module {
         get<AppDatabase>().getHistoryDao()
     }
 
+    single {
+        get<AppDatabase>().getRocketsDao()
+    }
 }

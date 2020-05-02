@@ -2,6 +2,7 @@ package com.slothdeboss.spacex.di
 
 import com.slothdeboss.spacex.data.api.HistoryRemoteSource
 import com.slothdeboss.spacex.data.api.ApiService
+import com.slothdeboss.spacex.data.api.RocketsRemoteSource
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -23,5 +24,9 @@ val networkModule = module {
 
     single {
         HistoryRemoteSource(get())
+    }
+
+    single {
+        RocketsRemoteSource(get())
     }
 }

@@ -4,13 +4,12 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.slothdeboss.spacex.data.model.History
-import com.slothdeboss.spacex.data.repository.Repository
+import com.slothdeboss.spacex.data.repository.HistoryRepository
 import com.slothdeboss.spacex.ui.history.state.*
 import kotlinx.coroutines.launch
 
 class HistoryViewModel(
-    private val repository: Repository<History>
+    private val repository: HistoryRepository
 ) : ViewModel() {
 
     private val _historyState = MutableLiveData<HistoryState>()
