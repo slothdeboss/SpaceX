@@ -27,7 +27,11 @@
         android:id="@+id/missionsFragment"
         android:name="com.slothdeboss.spacex.ui.missions.MissionsFragment"
         android:label="Missions"
-        tools:layout="@layout/missions_fragment" />
+        tools:layout="@layout/missions_fragment" >
+        <action
+            android:id="@+id/toDetail"
+            app:destination="@id/missionDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/historyDetailFragment"
         android:name="com.slothdeboss.spacex.ui.history.HistoryDetailFragment"
@@ -51,6 +55,19 @@
             app:destination="@id/rocketsFragment" />
         <argument
             android:name="rocketId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/missionDetailFragment"
+        android:name="com.slothdeboss.spacex.ui.missions.MissionDetailFragment"
+        android:label="Detail"
+        tools:layout="@layout/fragment_mission_detail" >
+        <action
+            android:id="@+id/toMissions"
+            app:destination="@id/missionsFragment" />
+        <argument
+            android:name="missionId"
             app:argType="integer"
             android:defaultValue="0" />
     </fragment>

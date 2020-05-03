@@ -34,8 +34,12 @@ class MissionsRepository(
         }
     }
 
-    override suspend fun obtainAllRemoteData(): List<Mission> = withContext(Dispatchers.IO) {
-        remoteSource.getMissions()
+    override suspend fun obtainAllRemoteData(): List<Mission> {
+        val missions = withContext(Dispatchers.IO) {
+            remoteSource.getMissions()
+        }
+        insertAllDataToLocal(data = missions)
+        return missions
     }
 
     override suspend fun obtainAllLocalData(): List<Mission> = withContext(Dispatchers.IO) {
