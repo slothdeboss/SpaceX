@@ -1,6 +1,7 @@
 package com.slothdeboss.spacex.data.api
 
 import com.slothdeboss.spacex.data.model.History
+import com.slothdeboss.spacex.data.model.Mission
 import com.slothdeboss.spacex.data.model.Rocket
 import retrofit2.http.GET
 
@@ -12,4 +13,6 @@ interface ApiService {
     @GET(value = "rockets")
     suspend fun getAllRockets(): List<Rocket>
 
+    @GET(value = "missions")
+    suspend fun getAllMissions(): List<Mission>
 }

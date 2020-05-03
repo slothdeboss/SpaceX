@@ -23,13 +23,19 @@ class HistoryRepository(
         }
     }
 
-    override suspend fun obtainDataById(id: Int): History = dao.retrieveHistoryById(id = id)
+    override suspend fun obtainDataById(id: Int): History = withContext(Dispatchers.IO) {
+        dao.retrieveHistoryById(id = id)
+    }
 
-    override suspend fun obtainAllLocalData(): List<History> = dao.retrieveAllHistory()
+    override suspend fun obtainAllLocalData(): List<History> = withContext(Dispatchers.IO) {
+        dao.retrieveAllHistory()
+    }
 
     override suspend fun insertAllDataToLocal(data: List<History>) {
         try {
-            dao.insertHistoryToDatabase(history = data)
+            withContext(Dispatchers.IO) {
+                dao.insertHistoryToDatabase(history = data)
+            }
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -41,7 +47,6 @@ class HistoryRepository(
         }.map { history ->
             history.eventDate = createDateString(history.eventDate)
             history
-
         }
         insertAllDataToLocal(data = remoteHistory)
         return remoteHistory

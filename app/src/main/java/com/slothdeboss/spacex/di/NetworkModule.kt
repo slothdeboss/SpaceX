@@ -2,6 +2,7 @@ package com.slothdeboss.spacex.di
 
 import com.slothdeboss.spacex.data.api.HistoryRemoteSource
 import com.slothdeboss.spacex.data.api.ApiService
+import com.slothdeboss.spacex.data.api.MissionsRemoteSource
 import com.slothdeboss.spacex.data.api.RocketsRemoteSource
 import org.koin.dsl.module
 import retrofit2.Retrofit
@@ -28,5 +29,9 @@ val networkModule = module {
 
     single {
         RocketsRemoteSource(get())
+    }
+
+    single {
+        MissionsRemoteSource(get())
     }
 }

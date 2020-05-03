@@ -9,5 +9,5 @@ import org.koin.dsl.module
 val viewModelModule = module {
     viewModel { HistoryViewModel(get()) }
     viewModel { RocketsViewModel(get()) }
-    viewModel { MissionsViewModel() }
+    viewModel { MissionsViewModel(get()) }
 }
