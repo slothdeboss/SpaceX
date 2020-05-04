@@ -46,6 +46,7 @@ class HistoryRepository(
             remoteSource.getHistory()
         }.map { history ->
             history.eventDate = createDateString(history.eventDate)
+            history.flightNumber = createFlightString(history.flightNumber)
             history
         }
         insertAllDataToLocal(data = remoteHistory)
@@ -55,5 +56,13 @@ class HistoryRepository(
     private fun createDateString(date: String) : String {
         val eventDate = date.substring(0..9)
         return "Date: $eventDate"
+    }
+
+    private fun createFlightString(flight: String?): String? {
+        return if (flight != null) {
+            "Flight: $flight"
+        } else {
+            "Flight: unknown"
+        }
     }
 }

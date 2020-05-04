@@ -22,7 +22,7 @@ import com.slothdeboss.spacex.data.model.Rocket
 )
 @Database(entities = [
     History::class, Rocket::class, Mission::class
-], version = 15, exportSchema = true)
+], version = 16, exportSchema = true)
 abstract class AppDatabase: RoomDatabase() {
 
     abstract fun getHistoryDao(): HistoryDao

@@ -57,13 +57,22 @@ class RocketDetailFragment : Fragment() {
 
     private fun onItemFetched(data: Rocket) {
         rocketDetailName.text = data.rocketName
-        rocketDetailSuccessRate.progress = data.successRate.toInt()
-        rocketDetailSuccessRatePct.text = data.successRate
+        rocketDetailSuccess.text = bindFieldWithData(field = "Success", data = data.successRate + "%")
         rocketDetailStatus.text = if (data.active) "Status: Active" else "Status: Inactive"
-        rocketDetailStages.text = "Stages: ${data.stages}"
-        rocketDetailBoosters.text = "Boosters: ${data.boosters}"
-        rocketDetailCostPerLaunch.text = "Cost per launch: ${data.costPerLaunch}$"
-        rocketDetailCompany.text = "Company: ${data.company}"
-        rocketDetailDescription.text = data.description
+        rocketDetailStages.text = bindFieldWithData(field = "Stages", data = data.stages)
+        rocketDetailBoosters.text = bindFieldWithData(field = "Boosters", data = data.boosters)
+        rocketDetailCostPerLaunch.text = bindFieldWithData(field = "Cost per launch", data = data.costPerLaunch)
+        rocketDetailCompany.text = bindFieldWithData(field = "Company", data = data.company)
+        data.description?.let {
+            rocketDetailDescription.text = bindFieldWithData(field = "Description", data = it)
+        }
+        rocketDetailHeight.text = data.height.toString()
+        rocketDetailMass.text = data.mass.toString()
+        rocketDetailFirstStage.text = data.firstStage.toString()
+        rocketDetailSecondStage.text = data.secondStage.toString()
+        rocketDetailEngines.text = data.engines.toString()
+
     }
+
+    private fun bindFieldWithData(field: String, data: String): String = "$field: $data"
 }

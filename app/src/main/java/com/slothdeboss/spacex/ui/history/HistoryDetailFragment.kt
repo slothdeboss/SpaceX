@@ -47,6 +47,7 @@ class HistoryDetailFragment : Fragment() {
     private fun onItemFetched(history: History) {
         historyDetailTitle.text = history.title
         historyDetailDate.text = history.eventDate
+        historyDetailFlightNumber.text = history.flightNumber
         historyDetailDescription.text = history.details
     }
 

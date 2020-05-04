@@ -15,7 +15,7 @@ data class History(
     var eventDate: String,
     @ColumnInfo(name = "flight_number")
     @SerializedName(value = "flight_number")
-    val flightNumber: String?,
+    var flightNumber: String?,
     val details: String?,
     val links: Links
 )

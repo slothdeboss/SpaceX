@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginEnd="10dp"
                 android:textAlignment="center"
                 android:textSize="25sp"
@@ -41,105 +41,148 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="60dp"
                 android:layout_marginStart="10dp"
+                android:layout_marginTop="80dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
-                app:layout_constraintTop_toBottomOf="@id/rocketDetailName"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rocketDetailName">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ProgressBar
-                        android:id="@+id/rocketDetailSuccessRate"
-                        style="?android:progressBarStyleHorizontal"
-                        android:layout_width="200dp"
-                        android:layout_height="200dp"
-                        android:layout_marginTop="10dp"
-                        android:progress="50"
-                        android:secondaryProgressTint="#808080"
-                        android:progressDrawable="@drawable/circle"
-                        android:rotation="270"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"/>
+                    android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/rocketDetailSuccessRatePct"
+                        android:id="@+id/rocketDetailSuccess"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="96dp"
-                        android:textSize="20sp"
-                        app:layout_constraintTop_toTopOf="parent"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:textAlignment="center"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"/>
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/rocketDetailStatus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/rocketDetailSuccessRate"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginTop="20dp"
                         android:layout_marginStart="15dp"
-                        android:textSize="18sp"/>
+                        android:layout_marginTop="20dp"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rocketDetailSuccess" />
 
                     <TextView
                         android:id="@+id/rocketDetailStages"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/rocketDetailStatus"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginTop="20dp"
                         android:layout_marginStart="15dp"
-                        android:textSize="18sp"/>
+                        android:layout_marginTop="20dp"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rocketDetailStatus" />
 
                     <TextView
                         android:id="@+id/rocketDetailBoosters"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/rocketDetailStages"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginTop="20dp"
                         android:layout_marginStart="15dp"
-                        android:textSize="18sp"/>
+                        android:layout_marginTop="20dp"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rocketDetailStages" />
 
                     <TextView
                         android:id="@+id/rocketDetailCostPerLaunch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/rocketDetailBoosters"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginTop="20dp"
                         android:layout_marginStart="15dp"
-                        android:textSize="18sp"/>
+                        android:layout_marginTop="20dp"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rocketDetailBoosters" />
 
                     <TextView
                         android:id="@+id/rocketDetailCompany"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/rocketDetailCostPerLaunch"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginTop="20dp"
                         android:layout_marginStart="15dp"
-                        android:textSize="18sp"/>
+                        android:layout_marginTop="20dp"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rocketDetailCostPerLaunch" />
+
+                    <TextView
+                        android:id="@+id/rocketDetailHeight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="20dp"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rocketDetailCompany" />
+
+                    <TextView
+                        android:id="@+id/rocketDetailMass"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="20dp"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rocketDetailHeight" />
+
+                    <TextView
+                        android:id="@+id/rocketDetailFirstStage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginEnd="15dp"
+                        android:layout_marginTop="20dp"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rocketDetailMass" />
+
+                    <TextView
+                        android:id="@+id/rocketDetailSecondStage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="15dp"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rocketDetailFirstStage" />
+
+                    <TextView
+                        android:id="@+id/rocketDetailEngines"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="15dp"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rocketDetailSecondStage" />
 
                     <TextView
                         android:id="@+id/rocketDetailDescription"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/rocketDetailCompany"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        android:layout_marginBottom="15dp"
+                        android:layout_marginStart="15dp"
                         android:layout_marginTop="20dp"
                         android:layout_marginEnd="15dp"
-                        android:layout_marginStart="15dp"
-                        android:textSize="16sp"/>
+                        android:layout_marginBottom="15dp"
+                        android:textSize="14sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/rocketDetailEngines" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

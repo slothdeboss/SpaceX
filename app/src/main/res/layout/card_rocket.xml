@@ -7,6 +7,9 @@
     android:layout_marginTop="10dp"
     android:layout_marginEnd="25dp"
     android:layout_marginBottom="10dp"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:selectableItemBackground"
     app:cardCornerRadius="8dp"
     app:cardElevation="8dp">
 
@@ -32,30 +35,30 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginBottom="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <ProgressBar
             android:id="@+id/rocketCardSuccessRateBar"
+            style="?android:progressBarStyleHorizontal"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginBottom="5dp"
             android:layout_marginEnd="5dp"
-            style="?android:progressBarStyleHorizontal"
+            android:layout_marginBottom="5dp"
+            android:progress="20"
             android:progressDrawable="@drawable/circle"
             android:rotation="270"
-            android:progress="20"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/rocket_success_rate"
-            app:layout_constraintEnd_toStartOf="@id/rocketCardSuccessRateBar"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginEnd="5dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginEnd="5dp"/>
+            android:text="@string/rocket_success_rate"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/rocketCardSuccessRateBar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
