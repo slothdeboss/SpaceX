@@ -1,6 +1,4 @@
 # SpaceX
-SpaceX pet-project
-
 This is pet-project that get information from SpaceX Api.
 
 In this project used:
