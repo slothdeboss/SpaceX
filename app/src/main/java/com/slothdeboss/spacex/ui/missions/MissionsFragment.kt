@@ -1,7 +1,6 @@
 package com.slothdeboss.spacex.ui.missions
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,17 +10,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 
 import com.slothdeboss.spacex.R
-import com.slothdeboss.spacex.data.event.LoadAllData
+import com.slothdeboss.spacex.ui.event.LoadAllData
 import com.slothdeboss.spacex.data.model.Mission
 import com.slothdeboss.spacex.data.state.Loading
 import com.slothdeboss.spacex.data.state.OnError
-import com.slothdeboss.spacex.data.state.OnItemFetched
 import com.slothdeboss.spacex.data.state.OnListFetched
 import com.slothdeboss.spacex.ui.OnCardClicked
 import com.slothdeboss.spacex.ui.missions.adapter.MissionsAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.missions_fragment.*
-import kotlinx.android.synthetic.main.rockets_fragment.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MissionsFragment : Fragment(), OnCardClicked {

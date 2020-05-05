@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 
 import com.slothdeboss.spacex.R
-import com.slothdeboss.spacex.data.event.LoadDataById
+import com.slothdeboss.spacex.ui.event.LoadDataById
 import com.slothdeboss.spacex.data.model.History
 import com.slothdeboss.spacex.data.state.OnError
 import com.slothdeboss.spacex.data.state.OnItemFetched

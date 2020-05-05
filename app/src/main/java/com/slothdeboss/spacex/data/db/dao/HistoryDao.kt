@@ -1,4 +1,4 @@
-package com.slothdeboss.spacex.data.db
+package com.slothdeboss.spacex.data.db.dao
 
 import androidx.room.Dao
 import androidx.room.Insert

@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 
 import com.slothdeboss.spacex.R
-import com.slothdeboss.spacex.data.event.LoadAllData
+import com.slothdeboss.spacex.ui.event.LoadAllData
 import com.slothdeboss.spacex.data.model.History
 import com.slothdeboss.spacex.data.state.Loading
 import com.slothdeboss.spacex.data.state.OnError

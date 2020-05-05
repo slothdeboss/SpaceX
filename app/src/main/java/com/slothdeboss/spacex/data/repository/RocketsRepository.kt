@@ -1,14 +1,14 @@
 package com.slothdeboss.spacex.data.repository
 
-import com.slothdeboss.spacex.data.api.RocketsRemoteSource
-import com.slothdeboss.spacex.data.db.RocketsDao
+import com.slothdeboss.spacex.data.api.source.RocketsRemoteSource
+import com.slothdeboss.spacex.data.db.source.RocketsLocalSource
 import com.slothdeboss.spacex.data.model.Rocket
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class RocketsRepository(
-    private val rocketsRemoteSource: RocketsRemoteSource,
-    private val dao: RocketsDao
+    private val remoteSource: RocketsRemoteSource,
+    private val localSource: RocketsLocalSource
 ) : Repository<Rocket> {
 
     override suspend fun obtainAllData(): List<Rocket> {
@@ -21,13 +21,13 @@ class RocketsRepository(
     }
 
     override suspend fun obtainDataById(id: Int): Rocket = withContext(Dispatchers.IO) {
-        dao.getRocketById(id = id)
+        localSource.obtainDataById(id = id)
     }
 
     override suspend fun insertAllDataToLocal(data: List<Rocket>) {
         try {
             withContext(Dispatchers.IO) {
-                dao.insertRocketsToDatabase(rockets = data)
+                localSource.insertData(data = data)
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -36,14 +36,14 @@ class RocketsRepository(
 
     override suspend fun obtainAllRemoteData(): List<Rocket> {
         val rockets = withContext(Dispatchers.IO) {
-            rocketsRemoteSource.getRockets()
+            remoteSource.getRemoteData()
         }
         insertAllDataToLocal(data = rockets)
         return rockets
     }
 
     override suspend fun obtainAllLocalData(): List<Rocket> = withContext(Dispatchers.IO) {
-        dao.getAllRocketsFromDatabase()
+        localSource.obtainLocalData()
     }
 
 }

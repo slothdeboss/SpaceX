@@ -4,6 +4,9 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.slothdeboss.spacex.data.db.converters.*
+import com.slothdeboss.spacex.data.db.dao.HistoryDao
+import com.slothdeboss.spacex.data.db.dao.MissionsDao
+import com.slothdeboss.spacex.data.db.dao.RocketsDao
 import com.slothdeboss.spacex.data.model.History
 import com.slothdeboss.spacex.data.model.Mission
 import com.slothdeboss.spacex.data.model.Rocket

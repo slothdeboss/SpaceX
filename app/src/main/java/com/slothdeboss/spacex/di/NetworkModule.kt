@@ -1,9 +1,9 @@
 package com.slothdeboss.spacex.di
 
-import com.slothdeboss.spacex.data.api.HistoryRemoteSource
+import com.slothdeboss.spacex.data.api.source.HistoryRemoteSource
 import com.slothdeboss.spacex.data.api.ApiService
-import com.slothdeboss.spacex.data.api.MissionsRemoteSource
-import com.slothdeboss.spacex.data.api.RocketsRemoteSource
+import com.slothdeboss.spacex.data.api.source.MissionsRemoteSource
+import com.slothdeboss.spacex.data.api.source.RocketsRemoteSource
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

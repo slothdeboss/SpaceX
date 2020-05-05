@@ -9,12 +9,10 @@ import android.view.ViewGroup
 import androidx.navigation.Navigation
 
 import com.slothdeboss.spacex.R
-import com.slothdeboss.spacex.data.event.LoadDataById
+import com.slothdeboss.spacex.ui.event.LoadDataById
 import com.slothdeboss.spacex.data.model.Mission
-import com.slothdeboss.spacex.data.state.Loading
 import com.slothdeboss.spacex.data.state.OnError
 import com.slothdeboss.spacex.data.state.OnItemFetched
-import com.slothdeboss.spacex.data.state.OnListFetched
 import kotlinx.android.synthetic.main.fragment_mission_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -51,8 +49,10 @@ class MissionDetailFragment : Fragment() {
     private fun onItemFetchedState(data: Mission) {
         Log.i("Detail", data.toString())
         missionDetailName.text = data.name
-        missionDetailId.text = "ID: ${data.missionId}"
-        missionDetailManufacturers.text = "Manufacturers: ${data.manufacturers.joinToString()}"
+        missionDetailId.text = bindFieldWithData(field = "ID", data = data.missionId)
+        missionDetailManufacturers.text = bindFieldWithData(
+            field = "Manufacturers", data = data.manufacturers.joinToString()
+        )
         missionDetailDescription.text = data.description
     }
 
@@ -61,4 +61,6 @@ class MissionDetailFragment : Fragment() {
             MissionDetailFragmentDirections.toMissions()
         )
     }
+
+    private fun bindFieldWithData(field: String, data: String) = "$field: $data"
 }

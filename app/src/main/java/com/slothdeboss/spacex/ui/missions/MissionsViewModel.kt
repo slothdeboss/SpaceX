@@ -1,13 +1,12 @@
 package com.slothdeboss.spacex.ui.missions
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.slothdeboss.spacex.data.event.DataEvent
-import com.slothdeboss.spacex.data.event.LoadAllData
-import com.slothdeboss.spacex.data.event.LoadDataById
+import com.slothdeboss.spacex.ui.event.DataEvent
+import com.slothdeboss.spacex.ui.event.LoadAllData
+import com.slothdeboss.spacex.ui.event.LoadDataById
 import com.slothdeboss.spacex.data.repository.MissionsRepository
 import com.slothdeboss.spacex.data.state.*
 import kotlinx.coroutines.launch

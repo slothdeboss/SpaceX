@@ -1,4 +1,4 @@
-package com.slothdeboss.spacex.data.event
+package com.slothdeboss.spacex.ui.event
 
 sealed class DataEvent
 
