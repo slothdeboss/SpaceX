@@ -1,7 +1,6 @@
 package com.slothdeboss.spacex.ui.missions
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -31,7 +30,6 @@ class MissionDetailFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         arguments?.let { bundle ->
             val id = MissionDetailFragmentArgs.fromBundle(bundle).missionId
-            Log.i("Id", id.toString())
             viewModel.render(event = LoadDataById(id = id))
         }
         observeState()
@@ -47,7 +45,6 @@ class MissionDetailFragment : Fragment() {
     }
 
     private fun onItemFetchedState(data: Mission) {
-        Log.i("Detail", data.toString())
         missionDetailName.text = data.name
         missionDetailId.text = bindFieldWithData(field = "ID", data = data.missionId)
         missionDetailManufacturers.text = bindFieldWithData(

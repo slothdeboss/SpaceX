@@ -2,23 +2,25 @@ package com.slothdeboss.spacex.ui.missions
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.slothdeboss.spacex.ui.event.DataEvent
 import com.slothdeboss.spacex.ui.event.LoadAllData
 import com.slothdeboss.spacex.ui.event.LoadDataById
 import com.slothdeboss.spacex.data.repository.MissionsRepository
 import com.slothdeboss.spacex.data.state.*
+import com.slothdeboss.spacex.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class MissionsViewModel(private val repository: MissionsRepository) : ViewModel() {
+class MissionsViewModel(
+    private val repository: MissionsRepository
+) : BaseViewModel() {
 
     private val _state = MutableLiveData<DataState>()
     val state: LiveData<DataState>
         get() = _state
 
-    fun render(event: DataEvent) {
+    override fun render(event: DataEvent) {
         when (event) {
             LoadAllData -> fetchAllData()
             is LoadDataById -> fetchMissionById(id = event.id)
@@ -49,5 +51,4 @@ class MissionsViewModel(private val repository: MissionsRepository) : ViewModel(
             }
         }
     }
-
 }

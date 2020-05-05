@@ -2,24 +2,24 @@ package com.slothdeboss.spacex.ui.history
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.slothdeboss.spacex.ui.event.DataEvent
 import com.slothdeboss.spacex.ui.event.LoadAllData
 import com.slothdeboss.spacex.ui.event.LoadDataById
 import com.slothdeboss.spacex.data.repository.HistoryRepository
 import com.slothdeboss.spacex.data.state.*
+import com.slothdeboss.spacex.ui.base.BaseViewModel
 import kotlinx.coroutines.launch
 
 class HistoryViewModel(
     private val repository: HistoryRepository
-) : ViewModel() {
+) : BaseViewModel() {
 
     private val _historyState = MutableLiveData<DataState>()
     val dataState: LiveData<DataState>
         get() = _historyState
 
-    fun render(event: DataEvent) {
+    override fun render(event: DataEvent) {
         when (event) {
             LoadAllData -> fetchHistory()
             is LoadDataById -> fetchHistoryById(event.id)
