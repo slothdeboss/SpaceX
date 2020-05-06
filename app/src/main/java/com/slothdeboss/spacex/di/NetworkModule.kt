@@ -5,16 +5,15 @@ import com.slothdeboss.spacex.data.api.ApiService
 import com.slothdeboss.spacex.data.api.source.MissionsRemoteSource
 import com.slothdeboss.spacex.data.api.source.RocketsRemoteSource
 import org.koin.dsl.module
+import org.koin.experimental.builder.single
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-
-const val BASE_URL = "https://api.spacexdata.com/v3/"
 
 val networkModule = module {
 
     single {
         Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(getProperty("BASE_URL", "https://api.spacexdata.com/v3/"))
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
@@ -23,15 +22,8 @@ val networkModule = module {
         get<Retrofit>().create(ApiService::class.java)
     }
 
-    single {
-        HistoryRemoteSource(get())
-    }
+    single<HistoryRemoteSource>()
+    single<MissionsRemoteSource>()
+    single<RocketsRemoteSource>()
 
-    single {
-        RocketsRemoteSource(get())
-    }
-
-    single {
-        MissionsRemoteSource(get())
-    }
 }

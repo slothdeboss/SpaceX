@@ -8,6 +8,7 @@ import com.slothdeboss.spacex.data.db.source.MissionsLocalSource
 import com.slothdeboss.spacex.data.db.source.RocketsLocalSource
 import org.koin.android.ext.koin.androidApplication
 import org.koin.dsl.module
+import org.koin.experimental.builder.single
 
 val persistenceModule = module {
 
@@ -34,15 +35,7 @@ val persistenceModule = module {
         get<AppDatabase>().getMissionsDao()
     }
 
-    single {
-        HistoryLocalSource(get())
-    }
-
-    single {
-        MissionsLocalSource(get())
-    }
-
-    single {
-        RocketsLocalSource(get())
-    }
+    single<HistoryLocalSource>()
+    single<MissionsLocalSource>()
+    single<RocketsLocalSource>()
 }
